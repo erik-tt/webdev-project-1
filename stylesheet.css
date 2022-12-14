@@ -1,0 +1,227 @@
+
+
+ 
+ /*This is the CSS stylesheet for project 1 in IT2810*/
+
+
+ body {
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    font-size: 30px;
+    background-color: #f2f2f2;
+    height: 100%;
+}
+
+/*CSS grid*/
+.grid-container {
+    display: grid;
+    justify-content: stretch;
+    grid-template-columns: 15% 70% 15%;
+    /* The fractions are not that intuitive, but the header and footer 
+    looks good if they are under 1*/
+    grid-template-rows: auto;
+    width: 100%;
+    /*This is a layout of the grid which displayes the elements
+    the CSS elements can be mapped to fit inside these boxes in the grid*/
+    grid-template-areas: 
+        "header header header" 
+        ". artist-info ."
+        ". main ." 
+        ". docs ." 
+        "footer footer footer";
+}
+
+/*CSS flexbox*/
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    align-content: space-around;
+    grid-area: main;
+}
+
+/*Top header*/
+.header {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: -50px;
+    margin-left: -50px;
+    margin-right: -50px;
+    height: 150px;
+    grid-area: header;
+    text-align: center;
+    background-color: rgb(171, 215, 230);
+    
+}
+
+/*About artist section*/
+.about-artist {
+    grid-area: artist-info;
+    text-align: center;
+    background-color: rgb(171, 215, 230);
+    margin-top: 60px;
+    outline: 5px solid black;
+    padding: 10px;
+}
+
+/*Text in the documentation*/
+.text_docs {
+    padding: 50px;
+}
+
+
+/*The entire documentation class*/
+.docs {
+    grid-area: docs;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+
+
+
+/*The footer at the bottom*/
+.footer {
+    grid-area: footer;
+    grid-gap: 20px;
+    text-align: center;
+    background-color: rgb(171, 215, 230);
+    margin-left: -10%;
+    margin-bottom: -10%;
+    margin-right: -10%;
+    height: 100px;
+
+}
+
+/*The button for the documentation*/
+.button_docs {
+    background-color: rgb(171, 215, 230);
+    color: black;
+    padding: 10px 30px;
+    text-align: center;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin: 40px;
+}
+
+/*Changes the backround of the button when hovering over it*/
+.button_docs:hover {
+    background-color: rgb(9, 71, 116);
+    color: white;
+}
+
+/*The SVG picture*/
+#svg {
+    outline: 5px solid black;
+    margin: 20px;
+
+}
+
+/*The lines and circles in the SVG picture*/
+line, circle{
+    stroke: black;
+    stroke-width: 2;
+}
+
+/*The head of the stickman in the SVG picture*/
+#head {
+    fill-opacity: 0;
+}
+
+/*The canvas picture*/
+#canvas {
+    outline: 5px solid black;
+    margin: 20px;   
+}
+
+/*Triggers the animation of the ball when hovering*/
+svg:hover #svg-ball {
+    animation: score 1s ease-in-out;
+    animation-iteration-count: infinite;
+    fill: white;
+}
+
+/*The standard color of the ball*/
+#svg-ball {
+    fill: white;
+}
+
+/*The standard color of the sky*/
+#svg-sky {
+    fill: lightblue;
+}
+
+/*the color of the grass*/
+#svg-grass {
+    fill: green;
+}
+
+/*Changes the color of the sky when it is hovered over*/
+#svg-sky:hover {
+    fill:blue;
+}
+/*The arrow that is always moving*/
+.arrow {
+    animation: aiming-arrow 1s ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+
+
+
+/*All the header 3s*/
+h2 {
+    text-align: center;
+    font-size: 40px;
+}
+
+/*All the header 4s*/
+h3 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: -5px
+}
+
+ul {
+    text-align: left;
+}
+
+
+
+
+
+
+
+/*CSS animation to move ball into the goal and change its color*/
+@keyframes score {
+
+    from {
+        fill: white;
+    }
+    to {
+        fill: red;
+    }
+
+    0% {
+        transform: translate(0%,0%);
+    }
+   
+    /*Moves the ball 5% to the right, and 45& up in the picture*/
+    100% {
+        transform: translate(5%, -45%);
+    }
+}
+
+/*Moves the arrow back and forth with 5%*/
+@keyframes aiming-arrow {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(5%);
+    }
+}

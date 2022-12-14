@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project1</title>
+
+    <!-- External CSS stylesheet -->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+
+    <!--jquery download-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+    <!-- All of the code and comments are in English. 
+    The displayed text and the documentation is in Norwegian.-->
+    
+    <!--Container for CSS grid-->
+    <div class="grid-container">
+
+        <div class="header">
+            <h1>
+                Det perfekte straffesparket
+            </h1>
+        </div>
+
+        <div class="about-artist">
+            <h2>Informasjon om kunstneren</h2>
+            <p id="about-artist-text">Kunstneren av bildene ønsker å være anonym. 
+                Kunstneren er veldig interessert i fotball og bildene er basert på personens
+                ide av det perfekte straffesparket. Personen har spilt fotball selv og vet hvor vanskelig det
+                er å sette ballen perfekt i målet. Kunstneren synes derfor det er noe vakkert over å illustrere et 
+                godt plassert straffespark. Hensikten med kunsten er å inspirere alle fotballspillere der ute 
+                til å sette de perfekte staffesparkene.
+            </p>
+        </div>
+
+        <!--Container for CSS flexbox-->
+        <div class="flex-container">
+        <!---svg image-->
+            <div class="item1">
+
+                <h2>SVG-bildet</h2>
+
+                <svg id="svg" width="400" height="400">
+
+                    <!--- Rectangles for sky and grass-->
+                    <rect id = "svg-grass" width="400" height="400" />
+                    <!--Sky had to be styled in CSS to get the animation to work-->
+                    <rect id = "svg-sky" width="400" height="250" />
+
+                    <!--- Lines for goal-->
+                    <line x1="200" y1="150" x2="200" y2="250" />
+                    <line x1="350" y1="150" x2="350" y2="250" />
+                    <line x1="200" y1="150" x2="350" y2="150" />
+
+                    <!--- Drawing of person-->
+
+                    <!--left leg-->
+                    <line x1="270" y1="250" x2="275" y2="225" />
+                    <!--rigth leg-->
+                    <line x1="280" y1="250" x2="275" y2="225"  />
+                    <!--torsoe-->
+                    <line x1="275" y1="225" x2="275" y2="190"  />
+                    <!--left arm-->
+                    <line x1="265" y1="225" x2="275" y2="195"  />
+                    <!--right arm-->
+                    <line x1="285" y1="225" x2="275" y2="195"  />
+                    <!--head-->
+                    <circle id="head" cx="275" cy="180" r="10" />
+
+                    <!--- Drawing of ball-->
+                    <circle id="svg-ball" cx="200" cy="350" r="20" />
+
+                    <!--drawing of arrow-->
+                    <line class = "arrow" x1="100" y1="165" x2="150" y2="165" />  
+                    <line class = "arrow" x1="150" y1="165" x2="130" y2="150" />
+                    <line class = "arrow" x1="150" y1="165" x2="130" y2="180" />
+
+                </svg>
+            </div>
+
+            <!---Canvas image-->
+                <div class="item2">
+                    <h2>Canvas-bildet</h2>
+                    <canvas id="canvas" width="400" height="400">
+                        <!--Fall back content-->
+                        Nettleseren din støtter ikke canvas. / your browser does not support canvas.
+                    </canvas>
+
+                    <script src="project1.js"> </script>
+                </div>
+        </div>
+        
+        <!--Documentation class-->
+        <div class="docs">
+            <button class="button_docs">Dokumentasjon</button>
+            <div class = "text_docs">
+                <h3>CSS-grid og CSS-flexbox</h3>
+                <p>
+                    Jeg har valgt å benytte meg av både CSS grid og CSS flexbox for å lage layouten til nettsiden. 
+                    Grunnen til dette var at jeg ønsket å lære om begge løsningene. 
+                    CSS grid deler nettsiden inn i tre kolonner og fem rader. 
+                    Jeg har benyttet meg av «grid-template-areas» for å bestemme hvor elementene skal plasseres i rutenettet. 
+                    Med unntak av overskrift og bunntekst er første og siste del av raden tom for å lage en marg til hovedinnholdet. 
+                    Jeg eksperimenterte mye med hvordan radene skulle deles inn, men jeg fant ut at auto ga det beste resultatet. 
+                    Uten auto var det vanskelig å lage en nettside uten mye plass mellom elementene, fordi dokumentasjonen tar opp mye plass når den vises, men den er ikke på skjermen til enhver tid.  
+                </p>
+
+                <p>
+                    De to bildene er plassert i en horisontal flexbox i hver sin boks. 
+                    Flexboxen er deretter plassert inn i en rute i gridet. 
+                    Her kunne en alternativ løsning hvert å legge til en kolonne i gridet og plassert begge bildene i hver sin rute, uten å bruke flexbox.
+                    På den andre siden fungerer det også bra med flexbox og den passer fint inn på siden. 
+                    Flexboxen får de to bildene til å legge seg fint over hverandre når vinduet skaleres.
+
+                </p>
+                <h3>HTML5 Canvas og SVG</h3>
+                <p>
+                    SVG bildet består av firkanter, linjer og sirkler. Styling av SVG bildet er gjort i CSS filen, fordi jeg syntes det virket organisert å plassere dette sammen med stylingen til resten av HTML dokumentet. 
+                    Animasjonene til SVG elementet er gjort med CSS animasjoner, som spesifiserer hvilke farger som skal endre seg og hvor mange prosent ballen og pilen skal flytte seg i bildet. Ballen sin animasjon kjøres ved at brukeren fører musen over bildet. 
+                    Det interaktive elementet på figurnivå er himmelen som endrer farge ved å flytte musen over. 
+                    «Hover» selektoren er brukt for å iverksette animasjonen til ballen og for at himmelen skifter farge. 
+                    Jeg valgte å bruke CSS til animasjoner, fordi det virket som en enklere løsning enn løsninger basert på javascript, og det var tilstrekkelig for å animere det jeg ønsket.
+                </p>
+                <p>
+                    HTML Canvas bildet sin kode ligger i en egen javascript fil og lenkes til under canvas elementene i HTML filen. 
+                    Bildet består av firkanter, linjer og sirkler som i SVG bildet. Koden er plassert inne i en funksjon «drawCanvas» som kalles rekursivt. 
+                    Canvaset må tegnes på nytt hele tiden for å vise animasjoner. 
+                    Pilen animeres ved at x verdien til linjene den er bygget opp med inkrementeres med 0.5 helt til den har flyttet seg med 30, før den begynner på nytt. 
+                    Ballen animeres på tilsvarende vis, ved at koordinatene inkrementeres med 4 og 0.5 for hver iterasjon til hele animasjonen er kjørt. Tallene er valgt basert på farten jeg vil at ballen skal bevege seg i.
+                    For å unngå at den starter for fort igjen etter den har kjørt er det lagt inn 20 iterasjoner pause. Animasjonen av ballen begynner ved at brukeren fører musen over bildet og er gjort med JQuery. 
+                    Dette kunne gjøres fordi canvaset har en id i HTML dokumentet. 
+                    Interaktivitet på figurnivå var vanskeligere i HTML canvas, fordi de ulike elementene i bildet ikke kan refereres til med id eller lignende. 
+                    Min løsning ble å skrive en funksjon som bruker javascript sin «onmousemove event» for å finne ut av når musen beveger seg innenfor himmel området. 
+                    Himmelen endrer da farge, men til forskjell fra SVG bildet, vil dette kun skje når brukeren beveger på musen innenfor de gitte koordinatene og ikke hvis musen er i ro.
+                </p>
+                <h3>JQuery</h3>
+                <p>
+                    JQuery er et javascript bibliotek som jeg har brukt for å skjule og vise dokumentasjonen når man trykker på knappen «dokumentasjon» og til å skjule dokumentasjonen når nettsiden lastes inn. 
+                    I tillegg bruker jeg det for å iverksette animasjonen til ballen for canvas bildet, siden canvas elementet har id og kan brukes til å sette verdien til en boolean variabel som bestemmer om animasjonen skal kjøre eller ikke. 
+                </p>
+                <h3>Cross-browser testing</h3>
+                <p>
+                    Jeg har testet nettsiden i Safari og Google Chrome. 
+                    Testingen ble gjennomført ved å se hvordan nettsiden skalerte i de to ulike nettleserne. og hvordan animasjonene oppførte seg. 
+                    Animasjonene fungerte likt i begge nettleserne og nettsiden skalerte likt når vinduene i de to nettleserne varierte i størrelse.
+                    Utformingen av nettsiden i de to nettleserne var også lik.
+                   
+                </p>
+                <h3>Mest nyttige informasjonskilder</h3>
+                <p>
+                    Jeg benyttet meg av websider og videoer for å finne informasjon. <a href="https://css-tricks.com">CSS-Tricks</a>
+                      og <a href='https://www.w3schools.com'> w3schools</a> har vært nyttige websider for å forstå konseptene til blant annet CSS-flexbox og CSS-grid. 
+                    w3schools har også vært veldig nyttig for å forstå det grunnleggende relatert til SVG og HTML Canvas. 
+                    Noen av de nyttige kildene jeg har brukt for å tillegne meg kunnskap om de ulike temaene er listet under. 
+
+                   
+                    <ul class="used_sources">
+
+                        <b>CSS:</b>
+
+                        <li>
+                            Chris Coyier (2022), <i>A Complete Guide to Flexbox, CSS-Tricks</i>, <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS-Tricks</a>
+                        </li>
+                        <li>
+                            Chris House (2022), <i>Complete Guide to Grid, CSS-Tricks</i>, <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">CSS-Tricks</a>
+                        </li>
+                        <li>
+                            W3Schools (2022), <i>Flexbox container</i>, <a href="https://www.w3schools.com/css/css3_flexbox_container.asp ">w3schools</a>
+                        </li>
+                        <li>
+                            W3Schools (2022), <i>CSS Animations</i>, <a href="https://www.w3schools.com/css/css3_animations.asp  ">w3schools</a>
+                        </li>
+
+                        <b>JQuery:</b>
+
+                        <li>
+                             JQuery (2022), <i>JQuery API</i>, <a href="https://api.jquery.com  ">JQuery</a>
+                        </li>
+                        <li>
+                            Traversy Media (2016), <i>jQuery Crash Course [1] – Intro and Selectors</i> , <a href="https://www.youtube.com/watch?v=3nrLc_JOF7k&t=626s">YouTube</a>
+                       </li>
+
+                       <b>SVG:</b>
+                       <li>
+                            W3Schools (2022), <i>SVG Tutorial</i> , <a href="https://www.w3schools.com/graphics/svg_intro.asp ">w3schools</a>
+                        </li>
+
+                        <b>HTML Canvas:</b>
+                        <li>
+                            Chris Courses (2017), <i>Animating the Canvas | HTML Canvas Tutorial for Begunners - Ep. 3</i> , <a href="https://www.youtube.com/watch?v=yq2au9EfeRQ&t=335s">YouTube</a>
+                            </li>
+                        <li>
+                            W3Schools (2022), <i>Canvas Tutorial</i> , <a href="https://www.w3schools.com/graphics/canvas_intro.asp  ">w3schools</a>
+                        </li>
+                    </ul>
+
+                </p>
+                <h3>Kilder for kode</h3>
+                <p>Denn Stack Overflow siden var til inspirasjon for skrive kode for å følge musepekeren i Canvas bildet. 
+                    Kilden er også referert til over koden det gjelder. 
+                    Koden er tilpasset til mitt behov og jeg har endret og fjernet mye, 
+                    men dette var utgangspunktet mitt da jeg skrev koden for å kunne endre farge basert på musepekerens posisjon:</p>
+                <ul>
+                    <li>
+                        Stack Overflow (2016), <a href="https://stackoverflow.com/questions/29300280/update-html5-canvas-rectangle-on-hover">Stack Overflow</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Dette er prosjekt 1 i IT2810</p>
+        </div>
+    </div>
+    
+
+</body>
+</html>
